@@ -20,15 +20,15 @@ public class TaskService {
     @Autowired
     private UserService userService;
 
-    public Task buscarPeloIdentificador(Long id) {
-        Optional<Task> task = this.taskRepository.buscarPeloIdentificador(id);
+    public Task findById(Long id) {
+        Optional<Task> task = this.taskRepository.findById(id);
         return task.orElseThrow(() -> new RuntimeException(
             "Tarefa não encontrado! Id: " + id + ", Tipo: " + Task.class.getName()));
     }
 
     @Transactional
     public Task create(Task obj) {
-        User user = this.userService.buscarPeloIdentificador(obj.getUser().getId());
+        User user = this.userService.findById(obj.getUser().getId());
         obj.setId(null);
         obj.setUser(user);
         obj = this.taskRepository.save(obj);
@@ -37,13 +37,13 @@ public class TaskService {
 
     @Transactional
     public Task update(Task obj) {
-        Task newObj = buscarPeloIdentificador(obj.getId());
+        Task newObj = findById(obj.getId());
         newObj.setDescription(obj.getDescription());
         return this.taskRepository.save(newObj);
     }
 
     public void delete(Long id) {
-        buscarPeloIdentificador(id);
+        findById(id);
         try {
             this.taskRepository.deleteById(id);
         } catch (Exception e) {
