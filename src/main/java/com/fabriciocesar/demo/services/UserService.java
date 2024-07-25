@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fabriciocesar.demo.models.User;
-import com.fabriciocesar.demo.repositories.TaskRepository;
 import com.fabriciocesar.demo.repositories.UserRepository;
 
 @Service
@@ -19,8 +18,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private TaskRepository taskRepository;
 
     public User buscarPeloIdentificador(Long id) {
         Optional<User> user = this.userRepository.buscarPeloIdentificador(id);
@@ -29,11 +26,11 @@ public class UserService {
         ));
     }
 
+    @SuppressWarnings("unchecked")
     @Transactional
     public User create(User obj) {
         obj.setId(null);
         obj = this.userRepository.save(obj);
-        this.taskRepository.saveAll(obj.getTasks());
         return obj;
     }
 
