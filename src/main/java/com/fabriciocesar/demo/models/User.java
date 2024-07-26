@@ -105,5 +105,10 @@ public class User {
         return result;
     }
 
+    public Iterable getTasks() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getTasks'");
+    }
+
 
 }

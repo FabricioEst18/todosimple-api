@@ -2,7 +2,6 @@ package com.fabriciocesar.demo.services;
 
 import java.util.Optional;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +26,7 @@ public class UserService {
                 "Usuário não encontrado! Id: " + id + ", Tipo: " + User.class.getName()));
     }
 
+    @SuppressWarnings("unchecked")
     @Transactional
     public User create(User obj) {
         obj.setId(null);
