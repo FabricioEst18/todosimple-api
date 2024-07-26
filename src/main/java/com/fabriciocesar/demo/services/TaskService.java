@@ -11,6 +11,8 @@ import com.fabriciocesar.demo.models.Task;
 import com.fabriciocesar.demo.models.User;
 import com.fabriciocesar.demo.repositories.TaskRepository;
 
+import antlr.collections.List;
+
 @Service
 public class TaskService { 
     
@@ -24,6 +26,11 @@ public class TaskService {
         Optional<Task> task = this.taskRepository.findById(id);
         return task.orElseThrow(() -> new RuntimeException(
             "Tarefa não encontrado! Id: " + id + ", Tipo: " + Task.class.getName()));
+    }
+
+    public List<Task> findAllByUserId(Long userId) {
+        List<Task> tasks = this.taskRepository.findByUser_Id(userId);
+        return tasks;
     }
 
     @Transactional
@@ -49,5 +56,10 @@ public class TaskService {
         } catch (Exception e) {
             throw new RuntimeException("Não é possível excluir pois há entidades relacionadas!");
         }
+    }
+
+    public java.util.List<Task> findByAllByUserId(Long userId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findByAllByUserId'");
     }
 }    
