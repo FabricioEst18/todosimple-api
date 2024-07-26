@@ -30,6 +30,7 @@ public class TeskController {
     
     @Autowired
     private TaskService taskService;
+    private Object userService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Task>findById(@PathVariable Long id) {
