@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -64,7 +63,5 @@ public class TeskController {
         this.taskService.delete(id);
         return ResponseEntity.noContent().build();
     }
-
-
 
 }

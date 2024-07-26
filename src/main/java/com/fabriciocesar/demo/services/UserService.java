@@ -26,7 +26,6 @@ public class UserService {
                 "Usuário não encontrado! Id: " + id + ", Tipo: " + User.class.getName()));
     }
 
-    @SuppressWarnings("unchecked")
     @Transactional
     public User create(User obj) {
         obj.setId(null);
