@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fabriciocesar.demo.models.Task;
+import com.fabriciocesar.demo.models.User;
 import com.fabriciocesar.demo.services.TaskService;
+import com.fabriciocesar.demo.services.UserService;
 
 @RestController
 @RequestMapping("/task")
@@ -37,6 +39,7 @@ public class TeskController {
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Task>> findByAllByUserId(@PathVariable Long userId) {
+        this.userService.findById(userId);
         List<Task> objs = this.taskService.findByAllByUserId(userId);
         return ResponseEntity.ok().body(objs);
     }
